@@ -18,6 +18,9 @@ build/
 .vscode/
 .idea/
 
+__pycache__/
+*.pyc
+
 # postgres (if any dumps or local data)
 *.sql
 pgdata/
