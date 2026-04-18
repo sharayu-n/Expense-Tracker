@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+build/
+
+# environment
+.env
+
+# logs
+*.log
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# postgres (if any dumps or local data)
+*.sql
+pgdata/
