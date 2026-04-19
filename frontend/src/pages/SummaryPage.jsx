@@ -15,7 +15,7 @@ const CATEGORY_META = {
 function SummaryPage() {
   const navigate = useNavigate();
   const [startDate, setStartDate] = useState("2025-03-01");
-  const [endDate, setEndDate] = useState("2025-03-31");
+  const [endDate, setEndDate] = useState("2025-03-01");
   const [summary, setSummary] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(false);

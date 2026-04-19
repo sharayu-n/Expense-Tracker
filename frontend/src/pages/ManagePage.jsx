@@ -37,7 +37,7 @@ const emptyNewExpense = {
 
 function ManagePage() {
   const [startDate, setStartDate] = useState("2025-03-01");
-  const [endDate, setEndDate] = useState("2025-03-31");
+  const [endDate, setEndDate] = useState("2025-03-01");
   const [expenses, setExpenses] = useState([]);
   const [selectedId, setSelectedId] = useState("");
   const [loading, setLoading] = useState(false);
