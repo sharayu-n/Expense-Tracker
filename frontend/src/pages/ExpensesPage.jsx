@@ -108,7 +108,7 @@ function ExpensesPage() {
             />
           </section>
 
-          <AddExpenseForm onCreated={fetchExpenses} />
+ß
 
           <div className="filters">
             <span className="filterLabel">📅</span>

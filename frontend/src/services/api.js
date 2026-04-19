@@ -39,3 +39,21 @@ export async function addExpense(expense) {
   });
   return handleResponse(response);
 }
+
+export async function updateExpense(id, expense) {
+  const response = await fetch(`${API_BASE}/expenses/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(expense),
+  });
+  return handleResponse(response);
+}
+
+export async function deleteExpense(id) {
+  const response = await fetch(`${API_BASE}/expenses/${id}`, {
+    method: "DELETE",
+  });
+  return handleResponse(response);
+}

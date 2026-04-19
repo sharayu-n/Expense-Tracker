@@ -1,5 +1,5 @@
-import './App.css';          // ← ADD THIS LINE
 import AppRouter from "./routes/AppRouter";
+import "./App.css";
 
 function App() {
   return <AppRouter />;

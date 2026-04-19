@@ -59,6 +59,14 @@ body {
   font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
   min-height: 100vh;
 }
+
+button, input { font: inherit; }
+a { color: inherit; text-decoration: none; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+
 .addForm {
   padding: 20px 24px 24px;
 }
@@ -67,6 +75,10 @@ body {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
+}
+
+.selectedRow {
+  background: rgba(106, 92, 255, 0.08);
 }
 
 .filterLabel select.dateInput {
@@ -78,8 +90,3 @@ body {
     grid-template-columns: 1fr;
   }
 }
-button, input { font: inherit; }
-a { color: inherit; text-decoration: none; }
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }

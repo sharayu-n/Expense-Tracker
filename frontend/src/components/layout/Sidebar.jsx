@@ -5,10 +5,10 @@ function Sidebar() {
     <aside className="sidebar">
       <div className="brand">
         <div className="brandTop">
-          <span className="brandIcon">💸</span>
-          Spendly
+          <span className="statusDot" />
+          Expenses
         </div>
-        <div className="brandSub">PostgreSQL expense tracker</div>
+        <div className="brandSub">PostgreSQL tracker</div>
       </div>
 
       <div className="navGroup">
@@ -16,7 +16,7 @@ function Sidebar() {
           to="/expenses"
           className={({ isActive }) => `navItem ${isActive ? "active" : ""}`}
         >
-          <span className="navIcon">📋</span>
+          <span className="navIcon">≡</span>
           Expenses
         </NavLink>
 
@@ -24,24 +24,29 @@ function Sidebar() {
           to="/summary"
           className={({ isActive }) => `navItem ${isActive ? "active" : ""}`}
         >
-          <span className="navIcon">📊</span>
+          <span className="navIcon">▤</span>
           Breakdown
+        </NavLink>
+
+        <NavLink
+          to="/manage"
+          className={({ isActive }) => `navItem ${isActive ? "active" : ""}`}
+        >
+          <span className="navIcon">✎</span>
+          Manage
         </NavLink>
 
         <NavLink
           to="/analysis"
           className={({ isActive }) => `navItem ${isActive ? "active" : ""}`}
         >
-          <span className="navIcon">🔍</span>
-          Query Plan
+          <span className="navIcon">⚡</span>
+          Query plan
         </NavLink>
       </div>
 
       <div className="sidebarFooter">
-        <span className="dbBadge">
-          <span className="statusDot" />
-          PostgreSQL
-        </span>
+        <span className="dbBadge">PostgreSQL</span>
       </div>
     </aside>
   );

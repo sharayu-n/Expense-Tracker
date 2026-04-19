@@ -8,6 +8,8 @@ from app.crud import (
     get_expenses_by_category,
     get_expenses_by_date_range,
     get_monthly_summary,
+    update_expense,
+    delete_expense
 )
 
 app = FastAPI(title="Expense Tracker API")
@@ -89,3 +91,24 @@ def explain_query(start_date: date, end_date: date):
 
     plan = [list(row.values())[0] for row in result]
     return {"plan": plan}
+
+@app.put("/expenses/{expense_id}")
+def edit_expense(expense_id: int, expense: ExpenseCreate):
+    try:
+        result = update_expense(expense_id, expense)
+        if not result:
+            raise HTTPException(status_code=404, detail="Expense not found")
+        return {"message": "Expense updated successfully", "expense": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.delete("/expenses/{expense_id}")
+def remove_expense(expense_id: int):
+    try:
+        result = delete_expense(expense_id)
+        if not result:
+            raise HTTPException(status_code=404, detail="Expense not found")
+        return {"message": "Expense deleted successfully", "expense": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

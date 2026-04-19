@@ -87,3 +87,52 @@ def get_monthly_summary(start_date, end_date):
     conn.close()
 
     return result
+
+def update_expense(expense_id, expense):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    query = """
+    UPDATE expenses
+    SET amount = %s,
+        category = %s,
+        date = %s,
+        description = %s
+    WHERE id = %s
+    RETURNING *;
+    """
+
+    cur.execute(
+        query,
+        (
+            expense.amount,
+            expense.category,
+            expense.date,
+            expense.description,
+            expense_id,
+        ),
+    )
+
+    result = cur.fetchone()
+    conn.commit()
+    cur.close()
+    conn.close()
+    return result
+
+
+def delete_expense(expense_id):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    query = """
+    DELETE FROM expenses
+    WHERE id = %s
+    RETURNING *;
+    """
+
+    cur.execute(query, (expense_id,))
+    result = cur.fetchone()
+    conn.commit()
+    cur.close()
+    conn.close()
+    return result
