@@ -132,14 +132,14 @@ PostgreSQL uses MVCC (Multi-Version Concurrency Control) to allow concurrent rea
 ### Backend
 
 cd backend
-source venv/bin/activate
-uvicorn app.main:app --reload
+- source venv/bin/activate
+- uvicorn app.main:app --reload
 
 ### Frontend
 
 cd frontend
-npm install
-npm run dev
+- npm install
+- npm run dev
 
 ---
 
