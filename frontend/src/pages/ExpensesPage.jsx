@@ -108,7 +108,7 @@ function ExpensesPage() {
             />
           </section>
 
-ß
+
 
           <div className="filters">
             <span className="filterLabel">📅</span>
