@@ -1,7 +1,7 @@
 from app.db import get_connection
 
 
-# ✅ Insert Expense (Heap + Index update)
+# Insert Expense (Heap + Index update)
 def create_expense(expense):
     conn = get_connection()
     cur = conn.cursor()
@@ -28,7 +28,7 @@ def create_expense(expense):
     return result
 
 
-# ✅ Filter by Category (Index usage possible)
+# Filter by Category (Index usage possible)
 def get_expenses_by_category(category):
     conn = get_connection()
     cur = conn.cursor()
@@ -48,7 +48,7 @@ def get_expenses_by_category(category):
     return result
 
 
-# ✅ Filter by Date Range (B-tree RANGE SCAN 🔥)
+# Filter by Date Range (B-tree RANGE SCAN)
 def get_expenses_by_date_range(start_date, end_date):
     conn = get_connection()
     cur = conn.cursor()
@@ -68,7 +68,7 @@ def get_expenses_by_date_range(start_date, end_date):
     return result
 
 
-# ✅ Monthly Aggregation (GroupAggregate)
+# Monthly Aggregation (GroupAggregate)
 def get_monthly_summary(start_date, end_date):
     conn = get_connection()
     cur = conn.cursor()

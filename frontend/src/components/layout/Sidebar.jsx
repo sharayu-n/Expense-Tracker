@@ -6,7 +6,7 @@ function Sidebar() {
       <div className="brand">
         <div className="brandTop">
           <span className="statusDot" />
-          Expenses
+          Spendwise
         </div>
         <div className="brandSub">PostgreSQL tracker</div>
       </div>
