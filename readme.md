@@ -1,4 +1,4 @@
-# Expense Tracker with PostgreSQL Internals Analysis
+<!-- # Expense Tracker with PostgreSQL Internals Analysis
 
 ## Overview
 
@@ -162,14 +162,243 @@ This project demonstrates how application-level operations map directly to Postg
 * Aggregation → GroupAggregate execution
 
 ---
+ -->
+# Expense Tracker with PostgreSQL Query Analysis
 
-## Conclusion
+## Project Overview
+This project is a web-based Expense Tracker application built using FastAPI and PostgreSQL. The primary goal is to analyze how PostgreSQL internally processes queries, focusing on storage, indexing, and query execution behavior.
 
-The project highlights how PostgreSQL efficiently handles real-world workloads using:
-
-* Heap-based storage
-* B-tree indexing
-* Cost-based query planning
-* MVCC for concurrency control
+The project demonstrates how database internals such as heap storage, B-tree indexing, and the query planner directly impact application performance.
 
 ---
+
+## Features
+- Add, update, and delete expenses  
+- Filter expenses by date range and category  
+- Generate category-wise summaries  
+- Analyze query execution using EXPLAIN ANALYZE  
+- Compare performance with and without indexes  
+
+---
+
+## Tech Stack
+- Backend: FastAPI (Python)  
+- Database: PostgreSQL  
+- Frontend: React / HTML / CSS / JavaScript  
+- Tools: Uvicorn, SQL, EXPLAIN ANALYZE  
+
+---
+
+## Project Structure
+```
+expense_tracker/
+│
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── crud.py
+│   │   ├── db.py
+│   │   ├── schemas.py
+│   │
+│   ├── sql/
+│   │   ├── schema.sql
+│   │   ├── seed.sql
+│   │
+│   ├── requirements.txt
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│
+├── README.md
+```
+
+---
+
+## Setup Instructions
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/expense-tracker.git
+cd expense-tracker
+```
+
+---
+
+## Backend Setup
+
+### Create Virtual Environment
+```bash
+cd backend
+python3 -m venv venv
+```
+
+### Activate Virtual Environment
+Mac/Linux:
+```bash
+source venv/bin/activate
+```
+
+Windows:
+```bash
+venv\Scripts\activate
+```
+
+### Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Database Setup (PostgreSQL)
+
+### Create Database
+```sql
+CREATE DATABASE expense_tracker;
+```
+
+### Run Schema
+```bash
+psql -U your_username -d expense_tracker -f sql/schema.sql
+```
+
+### Load Sample Data (Optional)
+```bash
+psql -U your_username -d expense_tracker -f sql/seed.sql
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file inside the backend folder:
+
+```
+DB_HOST=localhost
+DB_NAME=expense_tracker
+DB_USER=your_username
+DB_PASSWORD=your_password
+```
+
+Note: Do NOT upload this file to GitHub.
+
+---
+
+## Run Backend
+```bash
+uvicorn app.main:app --reload
+```
+
+API:
+http://127.0.0.1:8000
+
+Swagger Docs:
+http://127.0.0.1:8000/docs
+
+---
+
+## Run Frontend
+
+If using React:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+If using a simple frontend:
+```bash
+python -m http.server 8000
+```
+
+---
+
+## Reproducing Results
+
+### Without Index
+```sql
+EXPLAIN ANALYZE
+SELECT * FROM expenses
+WHERE date BETWEEN '2025-03-01' AND '2025-12-01';
+```
+
+Expected:
+- Sequential Scan  
+- Higher execution cost  
+
+---
+
+### Create Index
+```sql
+CREATE INDEX idx_date_category
+ON expenses(date, category);
+```
+
+---
+
+### With Index
+```sql
+EXPLAIN ANALYZE
+SELECT * FROM expenses
+WHERE date BETWEEN '2025-03-01' AND '2025-06-01';
+```
+
+Expected:
+- Bitmap Index Scan  
+- Improved performance  
+
+---
+
+## Screenshots
+
+### Query Plan (With Index)
+![Query Plan With Index](./images/index_scan.png)
+
+### Query Plan (Without Index)
+![Query Plan Without Index](./images/sequential_scan.png)
+
+### Category Breakdown
+![Category Breakdown](./images/category_breakdown.png)
+
+### Expense Management
+![Expense Management](./images/manage_expenses.png)
+
+---
+
+## Secret Keys & Credentials
+- Database credentials must be provided via `.env`  
+- No sensitive data is stored in the repository  
+
+---
+
+## Dataset
+- Synthetic dataset generated using SQL scripts  
+- Data can be loaded using `seed.sql`  
+- Alternatively, data can be inserted via the application  
+
+---
+
+## Project Link
+GitHub Repository: https://github.com/your-username/expense-tracker
+
+---
+
+## References
+- PostgreSQL Documentation – Storage and Indexes  
+- PostgreSQL Query Planning Documentation  
+- Research on B-tree indexing and query optimization  
+
+---
+
+## Future Improvements
+- Larger datasets for performance benchmarking  
+- Advanced indexing strategies  
+- Distributed database support  
+
+---
+
+## Notes
+- Ensure PostgreSQL is running before starting backend  
+- Verify database credentials in `.env`  
+- Run schema before starting the application  
